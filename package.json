@@ -1,0 +1,31 @@
+{
+  "name": "nodeui",
+  "version": "0.2.0",
+  "description": "NodeUI - bahasa pemrograman UI web (.nui) dengan compiler Rust",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build": "cargo run --quiet -- build examples/piano/piano.nui",
+    "dev": "cargo run --quiet -- dev examples/piano/piano.nui",
+    "check": "cargo run --quiet -- check examples/piano/piano.nui",
+    "test": "cargo test",
+    "fmt": "cargo fmt --all -- --check",
+    "lint": "cargo clippy --all-targets -- -D warnings",
+    "icon": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-icon.ps1",
+    "installer": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-installer.ps1"
+  },
+  "keywords": [
+    "ui",
+    "compiler",
+    "dsl",
+    "shadow-dom",
+    "rust"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

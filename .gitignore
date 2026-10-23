@@ -1,0 +1,7 @@
+/target/
+/dist/
+/release/
+/node_modules/
+
+*.log
+.DS_Store

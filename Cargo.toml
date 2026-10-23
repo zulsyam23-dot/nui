@@ -1,0 +1,20 @@
+[package]
+name = "nodeui"
+version = "0.2.0"
+edition = "2021"
+rust-version = "1.75"
+description = "NodeUI - bahasa UI web (.nui) dengan compiler Rust"
+license = "MIT"
+
+[lib]
+name = "nodeui"
+path = "src/lib.rs"
+
+[[bin]]
+name = "nui"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+strip = true
+codegen-units = 1

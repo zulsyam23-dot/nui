@@ -1,0 +1,280 @@
+page Piano {
+    use { siap, tekan, lepas, tekanTombol, lepasTombol, naikOktav, turunOktav, toggleSustain, aturVolume } from "./piano-logic.js"
+
+    // Event pada node page dipasang global (window) -> keyboard laptop.
+    on:ready = siap
+    on:keydown = tekanTombol
+    on:keyup = lepasTombol
+
+    state octav = "4"
+    state sustain = "mati"
+    state volume = "60"
+    state nada = "-"
+    state ditekan = "-"
+
+    Shell(style {
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        background: #0f1115;
+        color: #e8eaed;
+        min-height: 100vh;
+        padding: 28px 20px;
+    }) {
+        Header(style {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            max-width: 1040px;
+            margin: 0 auto 22px;
+
+            h1 {
+                font-size: 22px;
+                margin: 0;
+            }
+
+            p {
+                margin: 0;
+                color: #9aa4b2;
+                font-size: 13px;
+            }
+        }) {
+            Brand(style {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }) {
+                Title { "Piano NodeUI" }
+                Subtitle { "Main dengan keyboard laptop, mouse, atau sentuh" }
+            }
+
+            StatusRow(style {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                flex-wrap: wrap;
+            }) {
+                Badge(style {
+                    background: #1b2230;
+                    border: 1px solid #2f3644;
+                    border-radius: 999px;
+                    padding: 6px 14px;
+                    font-size: 12px;
+                    color: #8ab4f8;
+                }) {
+                    "Oktav {octav}"
+                }
+
+                SustainBadge(style {
+                    background: #1b2230;
+                    border: 1px solid #2f3644;
+                    border-radius: 999px;
+                    padding: 6px 14px;
+                    font-size: 12px;
+                    color: #9aa4b2;
+                }) {
+                    "Sustain {sustain}"
+                }
+            }
+        }
+
+        Main(style {
+            max-width: 1040px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }) {
+            // Keyboard: tombol putih di flex-row, tombol hitam diposisikan absolut.
+            Keyboard(id = "piano", style {
+                position: relative;
+                height: 240px;
+                display: flex;
+                padding: 14px;
+                background: #141821;
+                border: 1px solid #262b36;
+                border-radius: 16px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+
+                .key.black {
+                    position: absolute;
+                    top: 0;
+                    width: 46px;
+                    height: 132px;
+                    z-index: 2;
+                    border-radius: 0 0 6px 6px;
+                    background: linear-gradient(#343a45, #14171d);
+                    border: 1px solid #05070c;
+                    color: #d3d9e6;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-end;
+                    padding-bottom: 10px;
+                    font-size: 11px;
+                    font-weight: 600;
+                    font-family: inherit;
+                    cursor: pointer;
+                    user-select: none;
+                }
+
+                .key.black.tekan {
+                    background: linear-gradient(#4f8cff, #2f6fd0);
+                    color: #fff;
+                }
+
+                .key.black::after {
+                    content: attr(note);
+                    font-size: 9px;
+                    opacity: .6;
+                    margin-top: 2px;
+                }
+            }) {
+                WhiteRow(id = "whiteRow", style {
+                    position: relative;
+                    display: flex;
+                    flex: 1;
+
+                    .key.white {
+                        flex: 1;
+                        border: 1px solid #2a2f3a;
+                        background: linear-gradient(#fbfcfe, #e7eaf1);
+                        color: #2b303b;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: flex-end;
+                        padding-bottom: 10px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        font-family: inherit;
+                        cursor: pointer;
+                        user-select: none;
+                    }
+
+                    .key.white.tekan {
+                        background: linear-gradient(#7aa9ff, #4f8cff);
+                        color: #fff;
+                    }
+
+                    .key.white::after {
+                        content: attr(note);
+                        font-size: 10px;
+                        opacity: .65;
+                        margin-top: 2px;
+                    }
+                }) {
+                    WhiteKeyButton(note = "C4", class = "key white", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "A" }
+                    WhiteKeyButton(note = "D4", class = "key white", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "S" }
+                    WhiteKeyButton(note = "E4", class = "key white", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "D" }
+                    WhiteKeyButton(note = "F4", class = "key white", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "F" }
+                    WhiteKeyButton(note = "G4", class = "key white", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "G" }
+                    WhiteKeyButton(note = "A4", class = "key white", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "H" }
+                    WhiteKeyButton(note = "B4", class = "key white", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "J" }
+                    WhiteKeyButton(note = "C5", class = "key white", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "K" }
+                    WhiteKeyButton(note = "D5", class = "key white", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "L" }
+                    WhiteKeyButton(note = "E5", class = "key white", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { ";" }
+                }
+
+                BlackKeyButton(note = "C#4", class = "key black", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "W" }
+                BlackKeyButton(note = "D#4", class = "key black", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "E" }
+                BlackKeyButton(note = "F#4", class = "key black", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "T" }
+                BlackKeyButton(note = "G#4", class = "key black", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "Y" }
+                BlackKeyButton(note = "A#4", class = "key black", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "U" }
+                BlackKeyButton(note = "C#5", class = "key black", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "O" }
+                BlackKeyButton(note = "D#5", class = "key black", on:mousedown = tekan, on:mouseup = lepas, on:mouseleave = lepas) { "P" }
+            }
+
+            Controls(style {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+            }) {
+                OctaveDownButton(on:click = turunOktav, style {
+                    background: #2a2f3a;
+                    color: #e8eaed;
+                    border: 1px solid #3a4150;
+                    border-radius: 10px;
+                    padding: 9px 16px;
+                    font-size: 14px;
+                    font-family: inherit;
+                    cursor: pointer;
+                }) { "Oktav -" }
+
+                OctaveUpButton(on:click = naikOktav, style {
+                    background: #2a2f3a;
+                    color: #e8eaed;
+                    border: 1px solid #3a4150;
+                    border-radius: 10px;
+                    padding: 9px 16px;
+                    font-size: 14px;
+                    font-family: inherit;
+                    cursor: pointer;
+                }) { "Oktav +" }
+
+                SustainButton(on:click = toggleSustain, style {
+                    background: transparent;
+                    color: #8ab4f8;
+                    border: 1px solid #3a4150;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                    font-size: 14px;
+                    font-family: inherit;
+                    cursor: pointer;
+                }) { "Sustain" }
+
+                VolumeSlider(id = "volume", type = "range", min = "0", max = "100", value = "{volume}", on:input = aturVolume, style {
+                    flex: 1;
+                    min-width: 160px;
+                    accent-color: #4f8cff;
+                }) { "" }
+
+                VolumeLabel { "Volume {volume}%" }
+            }
+
+            InfoPanel(style {
+                background: #141821;
+                border: 1px solid #262b36;
+                border-radius: 14px;
+                padding: 16px 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+
+                p {
+                    margin: 0;
+                    font-size: 14px;
+                    color: #9aa4b2;
+                }
+
+                strong {
+                    color: #e8eaed;
+                }
+            }) {
+                Text { "Nada terakhir: {nada}" }
+                Text { "Sedang ditekan: {ditekan}" }
+            }
+
+            HintPanel(style {
+                background: #141821;
+                border: 1px solid #262b36;
+                border-radius: 14px;
+                padding: 16px 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                p {
+                    margin: 0;
+                    font-size: 13px;
+                    color: #9aa4b2;
+                }
+            }) {
+                Text { "Nada putih: A S D F G H J K L ;" }
+                Text { "Nada hitam: W E T Y U O P" }
+                Text { "Z / X = turun / naik oktav  -  Spasi = sustain" }
+            }
+        }
+    }
+}

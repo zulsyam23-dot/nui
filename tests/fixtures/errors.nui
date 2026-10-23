@@ -1,0 +1,11 @@
+page Home {
+    state nama = ""
+    Card {
+        Text { "Halo {namaLain}" }
+        Button(on:click = handlerYangBelumDiimpor) { "Muat" }
+    }
+    Footer {
+        state x = "1 + 2;"
+        Text { "x" }
+    }
+}

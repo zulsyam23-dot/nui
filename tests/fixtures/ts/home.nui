@@ -1,0 +1,15 @@
+page Home {
+    use { muatUser, tambahKlik } from "./logic.ts"
+    state nama = ""
+    state jumlah = "0"
+
+    Card(style = "border:1px solid #d0d7de;border-radius:10px;padding:20px;max-width:340px;font-family:system-ui,sans-serif;background:#fff;") {
+        Title { "NodeUI + TypeScript" }
+        Text { "Halo {nama}" }
+        Text { "Klik: {jumlah}" }
+        Row {
+            Button(on:click = muatUser, style = "background:#007bff;color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;") { "Muat" }
+            Button(on:click = tambahKlik, style = "background:#f0f0f0;color:#222;border:1px solid #ccc;border-radius:6px;padding:8px 16px;cursor:pointer;") { "Tambah" }
+        }
+    }
+}

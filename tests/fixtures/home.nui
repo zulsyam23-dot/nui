@@ -1,0 +1,61 @@
+page Home {
+    use { muatUser, tampilkanModal } from "./logic.js"
+    state nama = ""
+    state jumlah = "0"
+
+    Card(style {
+        border: 1px solid #d0d7de;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 340px;
+        font-family: system-ui, sans-serif;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+
+        h1 {
+            font-size: 22px;
+            margin: 0 0 10px;
+        }
+
+        p {
+            margin: 0 0 6px;
+            color: #444;
+        }
+    }) {
+        Title { "NodeUI" }
+        Text { "Halo {nama}" }
+        Text { "Jumlah dimuat: {jumlah}" }
+        Row {
+            Button(on:click = muatUser, style {
+                background: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+                padding: 8px 16px;
+                cursor: pointer;
+            }) { "Muat" }
+
+            Button(on:click = tampilkanModal, style {
+                background: #f0f0f0;
+                color: #222;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                padding: 8px 16px;
+                cursor: pointer;
+            }) { "Info" }
+        }
+    }
+
+    overlay InfoModal {
+        Panel(style {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            max-width: 280px;
+            font-family: system-ui, sans-serif;
+        }) {
+            Text { "Ini modal di layer terpisah (Overlay)." }
+        }
+    }
+}
