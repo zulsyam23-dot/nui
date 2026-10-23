@@ -258,7 +258,7 @@ overlay InfoModal {
 ## Instalasi
 
 Windows 10/11 (x64) tersedia dalam dua bentuk dari halaman
-[Releases](https://github.com/zulsyam23-dot/nodeui/releases):
+[Releases](https://github.com/zulsyam23-dot/nui/releases):
 
 - **Installer** `NodeUI-<versi>-setup.exe` — dipasang per pengguna (tanpa admin),
   menambahkan `nui` ke `PATH`, serta menyertakan contoh dan dokumentasi.

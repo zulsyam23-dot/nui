@@ -2,6 +2,11 @@
   "name": "nodeui",
   "version": "0.2.0",
   "description": "NodeUI - bahasa pemrograman UI web (.nui) dengan compiler Rust",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zulsyam23-dot/nui.git"
+  },
+  "homepage": "https://github.com/zulsyam23-dot/nui",
   "private": true,
   "type": "commonjs",
   "scripts": {

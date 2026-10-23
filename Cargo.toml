@@ -5,6 +5,8 @@ edition = "2021"
 rust-version = "1.75"
 description = "NodeUI - bahasa UI web (.nui) dengan compiler Rust"
 license = "MIT"
+repository = "https://github.com/zulsyam23-dot/nui"
+homepage = "https://github.com/zulsyam23-dot/nui"
 
 [lib]
 name = "nodeui"

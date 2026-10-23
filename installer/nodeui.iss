@@ -2,7 +2,7 @@
   #define AppVersion "0.2.0"
 #endif
 #ifndef AppURL
-  #define AppURL "https://github.com/zulsyam23-dot/nodeui"
+  #define AppURL "https://github.com/zulsyam23-dot/nui"
 #endif
 
 #define AppName "NodeUI"
